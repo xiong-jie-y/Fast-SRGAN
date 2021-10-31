@@ -3,6 +3,7 @@ from tensorflow import keras
 import numpy as np
 import cv2
 import os
+import tensorflow as tf
 
 parser = ArgumentParser()
 parser.add_argument('--image_dir', type=str, help='Directory where images are kept.')
@@ -20,6 +21,8 @@ def main():
     inputs = keras.Input((None, None, 3))
     output = model(inputs)
     model = keras.models.Model(inputs, output)
+    
+    tf.saved_model.save(model, '/tmp/my_saved_model2')
 
     # Loop over all images
     for image_path in image_paths:
@@ -33,6 +36,7 @@ def main():
         # Rescale to 0-1.
         low_res = low_res / 255.0
 
+        import IPython; IPython.embed()
         # Get super resolution image
         sr = model.predict(np.expand_dims(low_res, axis=0))[0]
 

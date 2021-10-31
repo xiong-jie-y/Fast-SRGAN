@@ -56,10 +56,12 @@ class FastSRGAN(object):
         self.df = 32
 
         # Build and compile the discriminator
-        self.discriminator = self.build_discriminator()
+        # self.discriminator = self.build_discriminator()
+        self.discriminator = keras.models.load_model('models/discriminator.h5')
 
         # Build and compile the generator for pretraining.
-        self.generator = self.build_generator()
+        # self.generator = self.build_generator()
+        self.generator = keras.models.load_model('models/generator.h5')
 
     @tf.function
     def content_loss(self, hr, sr):

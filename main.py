@@ -147,7 +147,7 @@ def main():
     pretrain_summary_writer = tf.summary.create_file_writer('logs/pretrain')
 
     # Run pre-training.
-    pretrain_generator(gan, ds, pretrain_summary_writer)
+    # pretrain_generator(gan, ds, pretrain_summary_writer)
 
     # Define the directory for saving the SRGAN training tensorbaord summary.
     train_summary_writer = tf.summary.create_file_writer('logs/train')
