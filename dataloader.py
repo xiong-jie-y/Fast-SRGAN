@@ -30,7 +30,10 @@ class DataLoader(object):
         """
 
         image = tf.io.read_file(image_path)
-        image = tf.image.decode_jpeg(image, channels=3)
+        if os.path.splitext(image_path) == ".jpg":
+            image = tf.image.decode_jpeg(image, channels=3)
+        elif os.path.splitext(image_path) == ".png":
+            image = tf.image.decode_png(image, channels=3)
         image = tf.image.convert_image_dtype(image, tf.float32)
 
         # Check if image is large enough

@@ -57,14 +57,14 @@ class FastSRGAN(object):
 
         # Build and compile the discriminator
         # self.discriminator = self.build_discriminator()
-        self.discriminator = keras.models.load_model('models/from_scrach/discriminator.h5')
+        self.discriminator = keras.models.load_model('models/discriminator.h5')
         inputs = keras.Input((None, None, 3))
         output = self.discriminator(inputs)
         self.discriminator = keras.models.Model(inputs, output)
 
         # Build and compile the generator for pretraining.
-        # self.generator = self.build_generator()
-        self.generator = keras.models.load_model('models/from_scrach/generator.h5')
+        self.generator = self.build_generator()
+        self.generator = keras.models.load_model('models/generator.h5')
         inputs = keras.Input((None, None, 3))
         output = self.generator(inputs)
         self.generator = keras.models.Model(inputs, output)
